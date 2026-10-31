@@ -88,6 +88,22 @@ input[type="submit"]:hover {
 	margin: 2px;
 }
 
+button {
+	border: none;
+	outline: none;
+	font-family: "Google Sans", sans-serif;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	padding: 5px;
+	background-color: #EBEBEB;
+	color: #000000;
+}
+
+button:hover {
+	background-color: #0090C1;
+	color: #FFFFFF;
+}
+
 @media (max-width: 768px) {
 	.app-container {
 		flex-direction: column;

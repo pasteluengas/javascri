@@ -22,11 +22,11 @@ if (localStorage.length === 0) {
 objs = [];
 
 class equipo {
-	constructor(codigo, nombre, cantidad) {
+	constructor(codigo, nombre, cantidad, prestados) {
 		this.codigo = codigo;
 		this.nombre = nombre;
 		this.cantidad = cantidad;
-		this.prestados = 0;
+		this.prestados = prestados;
 	};
 
 	getjson() {
@@ -36,6 +36,7 @@ class equipo {
 			"prestados": this.prestados,
 			"cantidad": this.cantidad
 		};
+		console.log(tojson);
 		return tojson;
 	};
 }
@@ -49,7 +50,7 @@ class session {
 		this.equipos = []
 		Object.keys(localStorage).forEach(clave => {
 		let jsonobj = JSON.parse(localStorage.getItem(clave));
-		this.equipos.push(new equipo(jsonobj["codigo"], jsonobj["nombre"], jsonobj["cantidad"]));
+		this.equipos.push(new equipo(jsonobj["codigo"], jsonobj["nombre"], jsonobj["cantidad"], jsonobj["prestados"]));
 		 // 	console.log(`Clave: ${clave} | Valor: ${localStorage.getItem(clave)}`);
 	});
 	console.log(this.equipos);
@@ -61,6 +62,10 @@ class session {
 			const toStorage = JSON.stringify(obj.getjson());
 			localStorage.setItem(obj.codigo, toStorage);
 		}
+	}
+
+	resetStorage() {
+		localStorage.clear();
 	}
 
 }
