@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap');
+
+* {
+   margin: 0px;
+   padding: 0px;
+}
+
+body {
+	font-family: "Google Sans", sans-serif;
+}
+
+.bar {
+	background-color: #0090C1;
+	color: #FFFFFF;
+	padding: 10px;
+}
+
+.app-container {
+	padding: 20px;
+	display: flex;
+}
+
+.tabla_container {
+	width: 80%;
+}
+
+.add_form {
+	width: 20%;
+	margin: 10px;
+	margin-top: 0;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	width: 80%;
+	margin: 10px;
+}
+
+.form * {
+	margin: 5px;
+}
+
+input {
+	padding: 12px;
+	font-family: "Google Sans", sans-serif;
+	outline:none;
+}
+
+input:hover {
+	background-color: #CCF5FF;
+	border: 0.1px #183446 solid;
+}
+
+.form h2:hover {
+	color: #183446;
+}
+
+input[type="submit"] {
+	border: none;
+	outline: none;
+	background-color: #0090C1;
+	color: #FFFFFF;	
+}
+
+input[type="submit"]:hover {
+	background-color: #183446;	
+}
+
+#le_table {
+	width: 100%;
+}
+
+
+.search-container {
+	margin: 5px;
+	padding-bottom: 20px;
+	display: flex;
+}
+
+.search-container input[type="search"] {
+	width: 80%;
+	margin: 2px;
+}
+
+.search-container input[type="submit"] {
+	width: 20%;
+	margin: 2px;
+}
+
+@media (max-width: 768px) {
+	.app-container {
+		flex-direction: column;
+	}
+
+	.tabla_container {
+		width: 100%;
+	}
+	
+	.add_form {
+		width: 100%;
+		margin: 10px;
+		}
+}

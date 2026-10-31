@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Equipos</title>
+</head>
+<body>
+	<div class="container">
+		<div class="bar">
+			<h1>CRUD de gestion de inventario</h1>
+		</div>
+		<div class="app-container">
+			<div class="add_form">
+				<form class="form" action="#" onsubmit="form1sub()">
+					<h2>Añadir equipo</h2>
+					<input type="text" id="input_code" placeholder="Codigo" required>
+					<input type="text" id="input_name" placeholder="Nombre" required>
+					<input type="number" id="input_ammo" placeholder="Cantidad" required min="1">
+					<input type="submit" value="Añadir">
+				</form>
+			</div>
+			<div class="tabla_container">
+				<form class="search-container" action="#">
+					<input type="search" id="input_search" placeholder="Buscar por codigo o por nombre" required>
+					<input type="submit" value="Buscar">
+				</form>
+				<table id="le_table">
+					<tr>
+						<td><b>Codigo</b></td>
+						<td><b>Nombre</b></td>
+						<td><b>Disponibles</b></td>
+						<td><b>Total</b></td>
+						<td><b>Accion</b></td>
+					</tr>
+				<table>
+			</div>
+		</div>
+	</div>
+
+	<script src="modelo.js"></script>
+	<script src="app.js"></script>
+</body>
+</html>
