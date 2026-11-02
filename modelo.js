@@ -4,17 +4,24 @@
 
 
 // 1. Revisar si hay contenido en local
-if (localStorage.length === 0) {
+if (localStorage.length == 0) {
 	// crea algun objeto para testeo
-	let testeo = {
+	let testeo = [{
 	  "codigo": "MUL-01",
 	  "nombre": "MULTIMETRO DIGITAL",
 	  "prestados": 0,
 	  "cantidad": 5
-	}
+	}, 
+	{
+		"codigo": "ARD-01",
+		"nombre": "KIT ARDUINO",
+		"prestados": 0,
+		"cantidad": 3
+	}]
 
-	localStorage.setItem(testeo["codigo"], JSON.stringify(testeo));
-	
+	for (i in testeo) {
+		localStorage.setItem(testeo[i]["codigo"], JSON.stringify(testeo[i]));
+	}	
 }
 
 

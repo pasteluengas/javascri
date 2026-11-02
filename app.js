@@ -9,7 +9,7 @@ function prestarEq(current_i) {
 	
 	sesion.equipos[current_i].prestados += 1;
 	sesion.loadItems();
-	document.querySelector("#"+ sesion.equipos[current_i].codigo +" td:nth-child(3)").textContent = (sesion.equipos[current_i].cantidad - sesion.equipos[current_i].prestados);
+	document.querySelector("#CODE_"+ sesion.equipos[current_i].codigo +" td:nth-child(3)").textContent = (sesion.equipos[current_i].cantidad - sesion.equipos[current_i].prestados);
 }
 
 function devolverEq(current_i) {
@@ -20,13 +20,66 @@ function devolverEq(current_i) {
 
 	sesion.equipos[current_i].prestados -= 1;
 	sesion.loadItems();
-	document.querySelector("#"+ sesion.equipos[current_i].codigo +" td:nth-child(3)").textContent = (sesion.equipos[current_i].cantidad - sesion.equipos[current_i].prestados);
+	document.querySelector("#CODE_"+ sesion.equipos[current_i].codigo +" td:nth-child(3)").textContent = (sesion.equipos[current_i].cantidad - sesion.equipos[current_i].prestados);
 }
 
+
+function show(codigo="all") {
+	const tabla = document.getElementById("le_table");
+	// Recorrer todas las filas de la tabla
+	for (let i = 0; i < tabla.rows.length; i++) {
+	    let fila = tabla.rows[i];
+	    //alert(fil1a.id + "==CODE_" + codigo);
+	    if (codigo != "all") fila.style.visibility = (fila.id == "not-hide" || fila.id == "CODE_" + codigo) ? "visible" : "collapse";
+		if (codigo == "all") fila.style.visibility = "visible";
+	}
+
+	document.getElementById("input_search").value = "";
+	document.getElementById("submit_search").value = "Mostrar todo";
+}
 
 document.getElementById("que si dios").addEventListener("click", function() {
 	sesion.resetStorage();
 	location.reload();
+}, false);
+
+document.getElementById("search").addEventListener("submit", function () {
+	let searchterm = document.getElementById("input_search").value;
+	console.log(searchterm);
+
+	if (document.getElementById("submit_search").value == "Mostrar todo" || document.getElementById("input_search").value == "") {
+		show();
+		document.getElementById("submit_search").value = "Buscar";
+		return;
+	}
+	
+	
+	// busqueda
+	// 1. covertirla a mayusculas
+	searchterm = searchterm.toUpperCase();
+	// 2. buscar por exactitud en solo el codigo
+	for(const i in sesion.equipos) {
+		if (sesion.equipos[i].codigo == searchterm) {
+			//alert("Encontrado: " + sesion.equipos[i].codigo);
+			show(sesion.equipos[i].codigo);
+			return;
+		} else if (sesion.equipos[i].nombre == searchterm) {
+			//alert("encontrado: " + sesion.equipos[i].codigo);
+			show(sesion.equipos[i].codigo);
+			return;
+		} else if (searchterm.indexOf(" ") == -1) {
+			let splitshit = sesion.equipos[i].nombre.split(" ");
+			for (palabra in splitshit) {
+				if (splitshit[palabra] == searchterm) {
+					//alert("Encontrado: " + sesion.equipos[i].codigo)
+					show(sesion.equipos[i].codigo);
+					return;
+				}
+			}
+		}// 3. buscar exactitud solo en nombre	
+	}
+	alert("No se encontraron coincidencias");
+	// 4. si es una sola palabra buscar si algun nombre tiene esa palaba
 }, false);
 
 
@@ -45,7 +98,7 @@ function load() {
 		const prestar = document.createElement("button");
 		const devolver = document.createElement("button");
 
-		fila.id = sesion.equipos[i].codigo;
+		fila.id = "CODE_" + sesion.equipos[i].codigo;
 		celda1.textContent = sesion.equipos[i].codigo;
 		celda2.textContent = sesion.equipos[i].nombre;
 		celda3.textContent = (sesion.equipos[i].cantidad - sesion.equipos[i].prestados);
