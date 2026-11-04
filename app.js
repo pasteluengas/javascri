@@ -2,21 +2,23 @@ var sesion = new session();
 sesion.copyItems();
 
 function prestarEq(current_i) {
-	let continue = true;
+	let continuer = true;
 	if ((sesion.equipos[current_i].prestados-1) < 5) {
-		continue = confirm("Quedan pocos equipos, desea continuar?");
+		continuer = confirm("Quedan pocos equipos, desea continuar?");
 	}
 
-	if(!continue) return false;
+	if(!continuer) return false;
  	
 	if ((sesion.equipos[current_i].prestados + 1) > sesion.equipos[current_i].cantidad) {
 		alert("No hay suficientes " + sesion.equipos[current_i].nombre + " para prestar.");
-		return;
+		return false;
 	}
 	
 	sesion.equipos[current_i].prestados += 1;
 	sesion.loadItems();
 	document.querySelector("#CODE_"+ sesion.equipos[current_i].codigo +" td:nth-child(3)").textContent = (sesion.equipos[current_i].cantidad - sesion.equipos[current_i].prestados);
+
+	return true;
 }
 
 function devolverEq(current_i) {
