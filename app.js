@@ -3,7 +3,7 @@ sesion.copyItems();
 
 function prestarEq(current_i) {
 	let continue = true;
-	if ((sesion.equipos[current_i].prestados-1) == ) {
+	if ((sesion.equipos[current_i].prestados-1) < 5) {
 		continue = confirm("Quedan pocos equipos, desea continuar?");
 	}
 
