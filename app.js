@@ -2,6 +2,13 @@ var sesion = new session();
 sesion.copyItems();
 
 function prestarEq(current_i) {
+	let continue = true;
+	if ((sesion.equipos[current_i].prestados-1) == ) {
+		continue = confirm("Quedan pocos equipos, desea continuar?");
+	}
+
+	if(!continue) return false;
+ 	
 	if ((sesion.equipos[current_i].prestados + 1) > sesion.equipos[current_i].cantidad) {
 		alert("No hay suficientes " + sesion.equipos[current_i].nombre + " para prestar.");
 		return;
